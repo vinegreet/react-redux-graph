@@ -20,24 +20,21 @@ const calculateWalls = (barsArray) => {
       : biggestA;
   }, {});
 
-  return [
-    {
-      number: result.numberA,
-      idx: result.idxA,
-    },
-    {
-      number: result.numberB,
-      idx: result.idxB,
-    },
-  ];
+  return {
+    output: result.area,
+    walls: [
+      {
+        number: result.numberA,
+        idx: result.idxA,
+      },
+      {
+        number: result.numberB,
+        idx: result.idxB,
+      },
+    ],
+  };
 };
 
-export const getWallIndexes = (barsArray) => {
-  const [leftWall, rightWall] = calculateWalls(barsArray);
-  return [leftWall.idx, rightWall.idx];
-};
+export const getWallIndexes = (barsArray) => calculateWalls(barsArray).walls.map(wall => wall.idx);
 
-export const getOutput = (barsArray) => {
-  const [leftWall, rightWall] = calculateWalls(barsArray);
-  return (rightWall.idx - leftWall.idx) * rightWall.number;
-};
+export const getOutput = (barsArray) => calculateWalls(barsArray).output;
