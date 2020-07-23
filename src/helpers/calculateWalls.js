@@ -1,24 +1,34 @@
 const calculateWalls = (barsArray) => {
-  const rightWall = barsArray.reduce((biggest, number, idx) => {
-    const multiplied = number * idx;
-    return multiplied > (biggest.multiplied || 0)
-      ? {
-          multiplied,
-          number,
-          idx,
-        }
-      : biggest;
-  }, {});
+  const result = barsArray.reduce((biggestA, numberA, idxA) => {
+    const output = barsArray.reduce((biggestB, numberB, idxB) => {
+      if (idxB < idxA) return biggestB;
+      const area = (idxB - idxA) * (numberA > numberB ? numberB : numberA);
 
-  const leftWallIdx = barsArray.findIndex((number) => number >= rightWall.number);
-  const leftWallNumber = barsArray[leftWallIdx];
+      return area > (biggestB.area || 0)
+        ? {
+            area,
+            numberA,
+            idxA,
+            numberB,
+            idxB,
+          }
+        : biggestB;
+    }, {});
+
+    return output.area > (biggestA.area || 0)
+      ? output
+      : biggestA;
+  }, {});
 
   return [
     {
-      number: leftWallNumber,
-      idx: leftWallIdx,
+      number: result.numberA,
+      idx: result.idxA,
     },
-    rightWall,
+    {
+      number: result.numberB,
+      idx: result.idxB,
+    },
   ];
 };
 
@@ -28,7 +38,7 @@ export const getWallIndexes = (barsArray) => {
 };
 
 export const getOutput = (barsArray) => {
-  console.log(calculateWalls(barsArray))
+  // console.log(calculateWalls(barsArray))
   const [leftWall, rightWall] = calculateWalls(barsArray);
   return (rightWall.idx - leftWall.idx) * rightWall.number;
 };
