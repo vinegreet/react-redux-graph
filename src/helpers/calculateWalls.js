@@ -38,7 +38,6 @@ export const getWallIndexes = (barsArray) => {
 };
 
 export const getOutput = (barsArray) => {
-  // console.log(calculateWalls(barsArray))
   const [leftWall, rightWall] = calculateWalls(barsArray);
   return (rightWall.idx - leftWall.idx) * rightWall.number;
 };
