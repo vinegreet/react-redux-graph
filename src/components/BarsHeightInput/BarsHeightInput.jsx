@@ -9,7 +9,7 @@ const BarsHeightInput = () => {
   const dispatch = useDispatch();
 
   const inputChangeHandler = (e) => {
-    setInput(e.value);
+    setInput(e.target.value);
   }
 
   const buttonClickHandler = (event) => {

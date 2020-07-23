@@ -11,4 +11,4 @@ export const inputReducer = (state = { barsHeight: [1,8,6,2,5,4,8,3,7] }, action
 
 export default inputReducer;
 
-export const selectBarHeights = state => state.inputReducer.isActive;
+export const selectBarHeights = state => state.inputReducer.barsHeight;
