@@ -1,0 +1,19 @@
+.graph_container {
+  background-color: #cecdcd;
+  min-height: 50vh;
+  min-width: 20vw;
+  padding: 10px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin: 2em;
+}
+
+.graph_bar {
+  width: 5px;
+  background-color: #000;
+}
+
+.graph_bar--wall {
+  background-color: #ff0000;
+}
